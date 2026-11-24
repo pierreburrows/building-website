@@ -36,12 +36,14 @@ function Index() {
   return (
     <main className="vr">
       <SiteNav />
-      <ScrollScrub
-        className="vr-journey"
-        scenes={scrollScrubScenes}
-        theme={scrollScrubTheme}
-      />
-      <JourneyHud />
+      <div className="vr-journey-wrap">
+        <ScrollScrub
+          className="vr-journey"
+          scenes={scrollScrubScenes}
+          theme={scrollScrubTheme}
+        />
+        <JourneyHud />
+      </div>
       <Story />
       <Gestures />
       <Residences />

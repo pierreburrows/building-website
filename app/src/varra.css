@@ -365,9 +365,23 @@ main.vr figure {
 
 /* HUD timecode */
 
+.vr-journey-wrap {
+  position: relative;
+}
+
+/* Zero-height sticky footer of the journey wrapper: rides the viewport bottom
+ * while the film is on screen and scrolls away with it. */
 .vr-hud {
-  position: fixed;
+  position: sticky;
   z-index: 30;
+  bottom: 0;
+  height: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.vr-hud__inner {
+  position: absolute;
   bottom: clamp(1rem, 3vw, 2rem);
   left: var(--vr-gutter);
   display: flex;
@@ -377,14 +391,9 @@ main.vr figure {
   font-family: var(--vr-mono);
   font-size: 0.64rem;
   letter-spacing: 0.16em;
+  white-space: nowrap;
   text-transform: uppercase;
   mix-blend-mode: difference;
-  pointer-events: none;
-  transition: transform 0.5s var(--vr-ease);
-}
-
-.vr-hud[data-visible="false"] {
-  transform: translateY(150%);
 }
 
 /* ---------- 02 story ---------- */
@@ -1215,7 +1224,6 @@ main.vr figure {
   .vr-cta-chapter,
   .vr-cta-chapter i,
   .vr-cta-submit i,
-  .vr-hud,
   .vr-res__name {
     transition: none;
   }

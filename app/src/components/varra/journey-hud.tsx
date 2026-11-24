@@ -8,8 +8,11 @@ function pad(value: number) {
 
 /**
  * The small timecode in the corner of the film, driven by the engine's own
- * `--ss-progress` variable. Reads the DOM only inside an effect (SSR safe) and
- * writes text directly, never through React state.
+ * `--ss-progress` variable. It is a zero-height sticky element placed after
+ * the journey inside the same wrapper, so it rides the viewport bottom while
+ * the film is on screen and leaves with it: no visibility logic needed. Reads
+ * the DOM only inside an effect (SSR safe) and writes text directly, never
+ * through React state.
  */
 export function JourneyHud() {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,12 +30,6 @@ export function JourneyHud() {
 
     const update = () => {
       frame = 0;
-      const rect = root.getBoundingClientRect();
-      const visible = rect.bottom > window.innerHeight * 0.5 && rect.top < window.innerHeight;
-      node.dataset.visible = visible ? "true" : "false";
-      if (!visible) {
-        return;
-      }
       const progress = Number.parseFloat(
         getComputedStyle(root).getPropertyValue("--ss-progress"),
       );
@@ -54,10 +51,8 @@ export function JourneyHud() {
 
     update();
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
     return () => {
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
       if (frame) {
         window.cancelAnimationFrame(frame);
       }
@@ -65,9 +60,11 @@ export function JourneyHud() {
   }, []);
 
   return (
-    <div aria-hidden="true" className="vr-hud" data-visible="true" ref={ref}>
-      <span>Varra / Los Angeles</span>
-      <span data-timecode="">TC 00:00:00:00</span>
+    <div aria-hidden="true" className="vr-hud" ref={ref}>
+      <div className="vr-hud__inner">
+        <span>Varra / Los Angeles</span>
+        <span data-timecode="">TC 00:00:00:00</span>
+      </div>
     </div>
   );
 }
