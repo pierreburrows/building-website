@@ -28,7 +28,7 @@ Composition, left to right:
   2) a small AI chat bubble saying "New enquiry captured",
   3) a CRM pipeline board with columns labelled "New", "Quoted", "Won".
 - Right side: headline text in a bold geometric sans-serif, white:
-  "Websites. CRMs. Automations that follow up."
+  "Websites. CRMs. AI & automations that follow up."
   Underneath in smaller blue text: "kravio.uk"
 
 Spelling must be exact. Flat, sharp, minimal, lots of negative space, soft blue glow, no people, no stock-photo look, no extra words, no watermark.
@@ -38,7 +38,7 @@ Spelling must be exact. Flat, sharp, minimal, lots of negative space, soft blue 
 
 Generate it again **without text** (delete the headline lines and add "no text anywhere"), then add the headline yourself in Canva or Figma:
 
-- Headline: `Websites. CRMs. Automations that follow up.` (white, bold, ~40 px at 1128 px width)
+- Headline: `Websites. CRMs. AI & automations that follow up.` (white, bold, ~40 px at 1128 px width)
 - Sub: `kravio.uk` (blue `#2F6BFF`)
 
 ### Backup prompt (simpler, text-free)
